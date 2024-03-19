@@ -6,6 +6,7 @@ package mainpkg;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
+
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -42,9 +44,10 @@ public class RegisterAccountController implements Initializable {
     Alert unfilled = new Alert(Alert.AlertType.WARNING,"Please Enter Everything!");
     Alert success = new Alert(Alert.AlertType.INFORMATION,"Congratulation your account has been created ");
     
-    
+    public static ArrayList<RegisterAccount> userDetails = new ArrayList<>();
     public static ArrayList<String> username = new ArrayList<>();
     public static ArrayList<String> userpass = new ArrayList<>();
+    
     
     
 
@@ -53,6 +56,8 @@ public class RegisterAccountController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         questionComboBox.getItems().addAll("whats your favourite colour","what is your pet name","what is your dream job");
         
     }    
@@ -61,11 +66,31 @@ public class RegisterAccountController implements Initializable {
     private void signupButton(ActionEvent event) {
         String userName = usernameRegisterTXT.getText();
         String userPass = passwordRegisterTXT.getText();
+        LocalDate birthday = birthdayPicker.getValue();
+        String ques = questionComboBox.getValue();
+        String ans = answerTXT.getText();
+        
+        RegisterAccount r = new RegisterAccount(userName,userPass,birthday,ques,ans);
+        userDetails.add(r);
+        
         username.add(userName);
         userpass.add(userPass);
-     
-     
         
+        
+//        userDetails.add(userName);
+//        userDetails.add(userPass);
+//        userDetails.add(ques);
+//        userDetails.add(ans);
+        
+        
+        
+        
+//        fileoutstream
+ 
+        
+        
+        
+       
 //        any textfield is empty or not
         boolean anyEmpty = false;
         if(usernameRegisterTXT.getText().isEmpty()||
